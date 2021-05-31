@@ -5,7 +5,7 @@
   <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
  </g>
  <g>
-  <title>Layer 1</title>
+  <title stroke="#ffffff">Layer 1</title>
   <polygon id="svg_2" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" points="12,23.5    12,11 22.5,5.5 22.5,17.5  " fill="none"/>
   <polyline id="svg_3" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" points="12,11    1.5,5.5 1.5,17.5 12,23.5  " fill="none"/>
   <polyline id="svg_4" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" points="1.5,5.5    12,0.5 22.5,5.5  " fill="none"/>
