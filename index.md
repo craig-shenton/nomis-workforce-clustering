@@ -1,6 +1,6 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-# Open Analytics Template
+# NOMIS Workforce Clustering
 
 {% include update.html %}
 
