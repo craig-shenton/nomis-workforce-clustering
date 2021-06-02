@@ -1,61 +1,132 @@
-import random
 import pandas as pd
-from datetime import datetime
-import plotly
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+import numpy as np
 
+url = "https://opendata.arcgis.com/datasets/17eb563791b648f9a7025ca408bb09c6_0.csv"
 
-# Generate Data
+df = pd.read_csv(url)
+df = df[df["LAD18CD"].str.contains("E")]
 
-x = pd.date_range(datetime.today(), periods=100).tolist()
-y = random.sample(range(1, 300), 100)
+# NOMIS API - Population estimates - local authority based by five year age band
+url = "https://www.nomisweb.co.uk/api/v01/dataset/NM_31_1.data.csv?geography=1811939329...1811939332,1811939334...1811939336,1811939338...1811939428,1811939436...1811939442,1811939768,1811939769,1811939443...1811939497,1811939499...1811939501,1811939503,1811939505...1811939507,1811939509...1811939517,1811939519,1811939520,1811939524...1811939570,1811939575...1811939599,1811939601...1811939628,1811939630...1811939634,1811939636...1811939647,1811939649,1811939655...1811939664,1811939667...1811939680,1811939682,1811939683,1811939685,1811939687...1811939704,1811939707,1811939708,1811939710,1811939712...1811939717,1811939719,1811939720,1811939722...1811939730,1811939757...1811939767,1807745025...1807745028,1807745030...1807745032,1807745034...1807745083,1807745085,1807745282,1807745283,1807745086...1807745155,1807745157...1807745164,1807745166...1807745170,1807745172...1807745177,1807745179...1807745194,1807745196,1807745197,1807745199,1807745201...1807745218,1807745221,1807745222,1807745224,1807745226...1807745231,1807745233,1807745234,1807745236...1807745244,1807745271...1807745281,1853882369...1853882372,1853882374...1853882379&date=latest&sex=7&age=0,22,25&measures=20100,20301"
 
-# Plot figure
-fig = go.Figure([go.Bar(x=x, y=y)])
+df_population = pd.read_csv(url)
+df_population = df_population[
+    [
+        "DATE",
+        "GEOGRAPHY_NAME",
+        "GEOGRAPHY_CODE",
+        "GEOGRAPHY_TYPE",
+        "AGE_NAME",
+        "MEASURES_NAME",
+        "OBS_VALUE",
+    ]
+]
+df_population = df_population[df_population["GEOGRAPHY_CODE"].str.contains("E")]
+df_population_pivot = df_population.pivot_table(
+    index=["GEOGRAPHY_CODE"], columns=["AGE_NAME", "MEASURES_NAME"], values="OBS_VALUE"
+).reset_index()
+df_population_pivot.columns = df_population_pivot.columns.map("|".join).str.strip("|")
 
-# Asthetics of the plot
-fig.update_layout(
-    {"plot_bgcolor": "rgba(0, 0, 0, 0)", "paper_bgcolor": "rgba(0, 0, 0, 0)"},
-    autosize=True,
-    margin=dict(l=50, r=50, b=50, t=50, pad=4, autoexpand=True),
-    # height=1000,
-    # hovermode="x",
+# NOMIS - annual population survey
+url = "https://www.nomisweb.co.uk/api/v01/dataset/NM_17_5.data.csv?geography=1853882369...1853882372,1853882374...1853882379,1807745025...1807745028,1807745030...1807745032,1807745034...1807745083,1807745085,1807745282,1807745283,1807745086...1807745155,1807745157...1807745164,1807745166...1807745170,1807745172...1807745177,1807745179...1807745194,1807745196,1807745197,1807745199,1807745201...1807745218,1807745221,1807745222,1807745224,1807745226...1807745231,1807745233,1807745234,1807745236...1807745244,1811939329...1811939332,1811939334...1811939336,1811939338...1811939428,1811939436...1811939442,1811939768,1811939769,1811939443...1811939497,1811939499...1811939501,1811939503,1811939505...1811939507,1811939509...1811939517,1811939519,1811939520,1811939524...1811939570,1811939575...1811939599,1811939601...1811939628,1811939630...1811939634,1811939636...1811939647,1811939649,1811939655...1811939664,1811939667...1811939680,1811939682,1811939683,1811939685,1811939687...1811939704,1811939707,1811939708,1811939710,1811939712...1811939717,1811939719,1811939720,1811939722...1811939730&date=latestMINUS4&variable=18,45,248,249,84,83,111,1487,1488,1532...1540,290,720...722,335,344&measures=20599,21001,21002,21003"
+
+df_survey = pd.read_csv(url)
+df_survey = df_survey[
+    [
+        "DATE",
+        "GEOGRAPHY_NAME",
+        "GEOGRAPHY_CODE",
+        "GEOGRAPHY_TYPE",
+        "MEASURES_NAME",
+        "VARIABLE_NAME",
+        "OBS_VALUE",
+    ]
+]
+df_survey = df_survey[df_survey["GEOGRAPHY_CODE"].str.contains("E")]
+df_survey_pivot = df_survey.pivot_table(
+    index=["GEOGRAPHY_CODE"],
+    columns=["VARIABLE_NAME", "MEASURES_NAME"],
+    values="OBS_VALUE",
+).reset_index()
+df_survey_pivot.columns = df_survey_pivot.columns.map("|".join).str.strip("|")
+
+# NOMIS - annual survey of hours and earnings - workplace analysis
+url = "https://www.nomisweb.co.uk/api/v01/dataset/NM_99_1.data.csv?geography=1807745025...1807745028,1807745030...1807745032,1807745034...1807745083,1807745085,1807745282,1807745283,1807745086...1807745155,1807745157...1807745164,1807745166...1807745170,1807745172...1807745177,1807745179...1807745194,1807745196,1807745197,1807745199,1807745201...1807745218,1807745221,1807745222,1807745224,1807745226...1807745231,1807745233,1807745234,1807745236...1807745244,1811939329...1811939332,1811939334...1811939336,1811939338...1811939428,1811939436...1811939442,1811939768,1811939769,1811939443...1811939497,1811939499...1811939501,1811939503,1811939505...1811939507,1811939509...1811939517,1811939519,1811939520,1811939524...1811939570,1811939575...1811939599,1811939601...1811939628,1811939630...1811939634,1811939636...1811939647,1811939649,1811939655...1811939664,1811939667...1811939680,1811939682,1811939683,1811939685,1811939687...1811939704,1811939707,1811939708,1811939710,1811939712...1811939717,1811939719,1811939720,1811939722...1811939730&date=latestMINUS1&sex=8,9&item=2&pay=1,7&measures=20100,20701"
+
+df_workplace = pd.read_csv(url)
+df_workplace = df_workplace[
+    [
+        "DATE",
+        "GEOGRAPHY_NAME",
+        "GEOGRAPHY_CODE",
+        "GEOGRAPHY_TYPE",
+        "SEX_NAME",
+        "PAY_NAME",
+        "MEASURES_NAME",
+        "OBS_VALUE",
+    ]
+]
+df_workplace = df_workplace[df_workplace["GEOGRAPHY_CODE"].str.contains("E")]
+df_workplace_pivot = df_workplace.pivot_table(
+    index=["GEOGRAPHY_CODE"],
+    columns=["SEX_NAME", "PAY_NAME", "MEASURES_NAME"],
+    values="OBS_VALUE",
+).reset_index()
+df_workplace_pivot.columns = df_workplace_pivot.columns.map("|".join).str.strip("|")
+
+# NOMIS - jobs density
+url = "https://www.nomisweb.co.uk/api/v01/dataset/NM_57_1.data.csv?geography=1807745025...1807745028,1807745030...1807745032,1807745034...1807745083,1807745085,1807745282,1807745283,1807745086...1807745155,1807745157...1807745164,1807745166...1807745170,1807745172...1807745177,1807745179...1807745194,1807745196,1807745197,1807745199,1807745201...1807745218,1807745221,1807745222,1807745224,1807745226...1807745231,1807745233,1807745234,1807745236...1807745244,1807745271...1807745281,1811939329...1811939332,1811939334...1811939336,1811939338...1811939428,1811939436...1811939442,1811939768,1811939769,1811939443...1811939497,1811939499...1811939501,1811939503,1811939505...1811939507,1811939509...1811939517,1811939519,1811939520,1811939524...1811939570,1811939575...1811939599,1811939601...1811939628,1811939630...1811939634,1811939636...1811939647,1811939649,1811939655...1811939664,1811939667...1811939680,1811939682,1811939683,1811939685,1811939687...1811939704,1811939707,1811939708,1811939710,1811939712...1811939717,1811939719,1811939720,1811939722...1811939730,1811939757...1811939767&date=latest&item=1,3&measures=20100"
+
+df_density = pd.read_csv(url)
+df_density = df_density[
+    [
+        "DATE",
+        "GEOGRAPHY_NAME",
+        "GEOGRAPHY_CODE",
+        "GEOGRAPHY_TYPE",
+        "ITEM_NAME",
+        "MEASURES_NAME",
+        "OBS_VALUE",
+    ]
+]
+df_density = df_density[df_density["GEOGRAPHY_CODE"].str.contains("E")]
+df_density_pivot = df_density.pivot_table(
+    index=["GEOGRAPHY_CODE"], columns=["ITEM_NAME", "MEASURES_NAME"], values="OBS_VALUE"
+).reset_index()
+df_density_pivot.columns = df_density_pivot.columns.map("|".join).str.strip("|")
+
+# NOMIS - Claimant count
+url = "https://www.nomisweb.co.uk/api/v01/dataset/NM_162_1.data.csv?geography=1807745025...1807745028,1807745030...1807745032,1807745034...1807745083,1807745085,1807745282,1807745283,1807745086...1807745155,1807745157...1807745164,1807745166...1807745170,1807745172...1807745177,1807745179...1807745194,1807745196,1807745197,1807745199,1807745201...1807745218,1807745221,1807745222,1807745224,1807745226...1807745231,1807745233,1807745234,1807745236...1807745244,1807745271...1807745281,1811939329...1811939332,1811939334...1811939336,1811939338...1811939428,1811939436...1811939442,1811939768,1811939769,1811939443...1811939497,1811939499...1811939501,1811939503,1811939505...1811939507,1811939509...1811939517,1811939519,1811939520,1811939524...1811939570,1811939575...1811939599,1811939601...1811939628,1811939630...1811939634,1811939636...1811939647,1811939649,1811939655...1811939664,1811939667...1811939680,1811939682,1811939683,1811939685,1811939687...1811939704,1811939707,1811939708,1811939710,1811939712...1811939717,1811939719,1811939720,1811939722...1811939730,1811939757...1811939767&date=latestMINUS27,latestMINUS26,latestMINUS25,latestMINUS24,latestMINUS23,latestMINUS22,latestMINUS21,latestMINUS20,latestMINUS19,latestMINUS18,latestMINUS17,latestMINUS16&gender=0&age=0&measure=1...4&measures=20100"
+
+df_claim = pd.read_csv(url)
+df_claim = df_claim[
+    [
+        "DATE",
+        "GEOGRAPHY_NAME",
+        "GEOGRAPHY_CODE",
+        "GEOGRAPHY_TYPE",
+        "MEASURE_NAME",
+        "OBS_VALUE",
+    ]
+]
+df_claim = df_claim[df_claim["GEOGRAPHY_CODE"].str.contains("E")]
+df_claim_pivot = df_claim.pivot_table(
+    index=["GEOGRAPHY_CODE"], columns=["MEASURE_NAME"], values="OBS_VALUE"
+).reset_index()
+
+# London Min Wage
+url = "https://opendata.arcgis.com/datasets/79c993a10398400bb025a00849a43dc0_0.csv"
+
+df_london = pd.read_csv(url)
+df_london["london_min_wage"] = np.where(
+    (df_london["CTY19NM"] == "Inner London") | (df_london["CTY19NM"] == "Outer London"),
+    True,
+    False,
 )
 
-# Add title and dynamic range selector to x axis
-fig.update_xaxes(
-    title_text="Date",
-    rangeselector=dict(
-        buttons=list(
-            [
-                dict(count=6, label="6m", step="month", stepmode="backward"),
-                dict(count=1, label="1y", step="year", stepmode="backward"),
-                dict(step="all"),
-            ]
-        )
-    ),
+# Merge to master file
+merged_master = pd.merge(
+    df_population_pivot, df_survey_pivot, on=["GEOGRAPHY_CODE"], how="left"
 )
-
-# Add title to y axis
-fig.update_yaxes(title_text="Count")
-
-# Write out to file (.html)
-config = {"displayModeBar": False, "displaylogo": False}
-plotly_obj = plotly.offline.plot(
-    fig, include_plotlyjs=False, output_type="div", config=config
-)
-with open("_includes/plotly_obj.html", "w") as file:
-    file.write(plotly_obj)
-
-# Grab timestamp
-data_updated = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-
-# Write out to file (.html)
-html_str = (
-    '<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.5 4.75a.75.75 0 00-1.5 0v3.5a.75.75 0 00.471.696l2.5 1a.75.75 0 00.557-1.392L8.5 7.742V4.75z"></path></svg> Latest Data: '
-    + data_updated
-    + "</p>"
-)
-with open("_includes/update.html", "w") as file:
-    file.write(html_str)
+merged_master
+merged_master.reset_index().to_csv("data/master_file.csv", index=False)
