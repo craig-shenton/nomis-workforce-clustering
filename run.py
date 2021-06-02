@@ -1,132 +1,79 @@
 import pandas as pd
 import numpy as np
 
-url = "https://opendata.arcgis.com/datasets/17eb563791b648f9a7025ca408bb09c6_0.csv"
-
-df = pd.read_csv(url)
-df = df[df["LAD18CD"].str.contains("E")]
-
 # NOMIS API - Population estimates - local authority based by five year age band
-url = "https://www.nomisweb.co.uk/api/v01/dataset/NM_31_1.data.csv?geography=1811939329...1811939332,1811939334...1811939336,1811939338...1811939428,1811939436...1811939442,1811939768,1811939769,1811939443...1811939497,1811939499...1811939501,1811939503,1811939505...1811939507,1811939509...1811939517,1811939519,1811939520,1811939524...1811939570,1811939575...1811939599,1811939601...1811939628,1811939630...1811939634,1811939636...1811939647,1811939649,1811939655...1811939664,1811939667...1811939680,1811939682,1811939683,1811939685,1811939687...1811939704,1811939707,1811939708,1811939710,1811939712...1811939717,1811939719,1811939720,1811939722...1811939730,1811939757...1811939767,1807745025...1807745028,1807745030...1807745032,1807745034...1807745083,1807745085,1807745282,1807745283,1807745086...1807745155,1807745157...1807745164,1807745166...1807745170,1807745172...1807745177,1807745179...1807745194,1807745196,1807745197,1807745199,1807745201...1807745218,1807745221,1807745222,1807745224,1807745226...1807745231,1807745233,1807745234,1807745236...1807745244,1807745271...1807745281,1853882369...1853882372,1853882374...1853882379&date=latest&sex=7&age=0,22,25&measures=20100,20301"
+url = 'https://www.nomisweb.co.uk/api/v01/dataset/NM_31_1.data.csv?geography=1820327937...1820328318&date=latest&sex=7&age=0,22,25&measures=20100,20301&signature=NPK-be81606366125733ff591b:0x040ed4bb17cc73b3e5e08779f332feb87f777ac1'
 
 df_population = pd.read_csv(url)
-df_population = df_population[
-    [
-        "DATE",
-        "GEOGRAPHY_NAME",
-        "GEOGRAPHY_CODE",
-        "GEOGRAPHY_TYPE",
-        "AGE_NAME",
-        "MEASURES_NAME",
-        "OBS_VALUE",
-    ]
-]
-df_population = df_population[df_population["GEOGRAPHY_CODE"].str.contains("E")]
-df_population_pivot = df_population.pivot_table(
-    index=["GEOGRAPHY_CODE"], columns=["AGE_NAME", "MEASURES_NAME"], values="OBS_VALUE"
-).reset_index()
-df_population_pivot.columns = df_population_pivot.columns.map("|".join).str.strip("|")
+df_population = df_population[['DATE','GEOGRAPHY_NAME','GEOGRAPHY_CODE','GEOGRAPHY_TYPE','AGE_NAME','MEASURES_NAME','OBS_VALUE']]
+df_population = df_population[df_population['GEOGRAPHY_CODE'].str.contains("E")]
+df_population_pivot = df_population.pivot_table(index=['GEOGRAPHY_CODE'], 
+                    columns=['AGE_NAME','MEASURES_NAME'], 
+                    values='OBS_VALUE').reset_index()
+df_population_pivot.columns = df_population_pivot.columns.map('|'.join).str.strip('|')
 
 # NOMIS - annual population survey
-url = "https://www.nomisweb.co.uk/api/v01/dataset/NM_17_5.data.csv?geography=1853882369...1853882372,1853882374...1853882379,1807745025...1807745028,1807745030...1807745032,1807745034...1807745083,1807745085,1807745282,1807745283,1807745086...1807745155,1807745157...1807745164,1807745166...1807745170,1807745172...1807745177,1807745179...1807745194,1807745196,1807745197,1807745199,1807745201...1807745218,1807745221,1807745222,1807745224,1807745226...1807745231,1807745233,1807745234,1807745236...1807745244,1811939329...1811939332,1811939334...1811939336,1811939338...1811939428,1811939436...1811939442,1811939768,1811939769,1811939443...1811939497,1811939499...1811939501,1811939503,1811939505...1811939507,1811939509...1811939517,1811939519,1811939520,1811939524...1811939570,1811939575...1811939599,1811939601...1811939628,1811939630...1811939634,1811939636...1811939647,1811939649,1811939655...1811939664,1811939667...1811939680,1811939682,1811939683,1811939685,1811939687...1811939704,1811939707,1811939708,1811939710,1811939712...1811939717,1811939719,1811939720,1811939722...1811939730&date=latestMINUS4&variable=18,45,248,249,84,83,111,1487,1488,1532...1540,290,720...722,335,344&measures=20599,21001,21002,21003"
+url = 'https://www.nomisweb.co.uk/api/v01/dataset/NM_17_5.data.csv?geography=1820327937...1820328307&date=latestMINUS4&variable=248,249,111,1487,1488,1537,290,720...722,335,344,18,45,558,564,197,202,434...437,1558,72,74,84&measures=20599,21001,21002,21003&signature=NPK-be81606366125733ff591b:0x6f9c2f37c9dfe740d3b6bb526a225b04981a766e'
 
 df_survey = pd.read_csv(url)
-df_survey = df_survey[
-    [
-        "DATE",
-        "GEOGRAPHY_NAME",
-        "GEOGRAPHY_CODE",
-        "GEOGRAPHY_TYPE",
-        "MEASURES_NAME",
-        "VARIABLE_NAME",
-        "OBS_VALUE",
-    ]
-]
-df_survey = df_survey[df_survey["GEOGRAPHY_CODE"].str.contains("E")]
-df_survey_pivot = df_survey.pivot_table(
-    index=["GEOGRAPHY_CODE"],
-    columns=["VARIABLE_NAME", "MEASURES_NAME"],
-    values="OBS_VALUE",
-).reset_index()
-df_survey_pivot.columns = df_survey_pivot.columns.map("|".join).str.strip("|")
+df_survey = df_survey[['DATE','GEOGRAPHY_NAME','GEOGRAPHY_CODE','GEOGRAPHY_TYPE','MEASURES_NAME','VARIABLE_NAME','OBS_VALUE']]
+df_survey = df_survey[df_survey['GEOGRAPHY_CODE'].str.contains("E")]
+df_survey_pivot = df_survey.pivot_table(index=['GEOGRAPHY_CODE'], 
+                    columns=['VARIABLE_NAME','MEASURES_NAME'], 
+                    values='OBS_VALUE').reset_index()
+df_survey_pivot.columns = df_survey_pivot.columns.map('|'.join).str.strip('|')
 
 # NOMIS - annual survey of hours and earnings - workplace analysis
-url = "https://www.nomisweb.co.uk/api/v01/dataset/NM_99_1.data.csv?geography=1807745025...1807745028,1807745030...1807745032,1807745034...1807745083,1807745085,1807745282,1807745283,1807745086...1807745155,1807745157...1807745164,1807745166...1807745170,1807745172...1807745177,1807745179...1807745194,1807745196,1807745197,1807745199,1807745201...1807745218,1807745221,1807745222,1807745224,1807745226...1807745231,1807745233,1807745234,1807745236...1807745244,1811939329...1811939332,1811939334...1811939336,1811939338...1811939428,1811939436...1811939442,1811939768,1811939769,1811939443...1811939497,1811939499...1811939501,1811939503,1811939505...1811939507,1811939509...1811939517,1811939519,1811939520,1811939524...1811939570,1811939575...1811939599,1811939601...1811939628,1811939630...1811939634,1811939636...1811939647,1811939649,1811939655...1811939664,1811939667...1811939680,1811939682,1811939683,1811939685,1811939687...1811939704,1811939707,1811939708,1811939710,1811939712...1811939717,1811939719,1811939720,1811939722...1811939730&date=latestMINUS1&sex=8,9&item=2&pay=1,7&measures=20100,20701"
+url = 'https://www.nomisweb.co.uk/api/v01/dataset/NM_99_1.data.csv?geography=1820327937...1820328307&date=latestMINUS1&sex=7...9&item=2&pay=1,7&measures=20100,20701&signature=NPK-be81606366125733ff591b:0xf7da857b959a5cb57353190fa7936dfcab634697'
 
 df_workplace = pd.read_csv(url)
-df_workplace = df_workplace[
-    [
-        "DATE",
-        "GEOGRAPHY_NAME",
-        "GEOGRAPHY_CODE",
-        "GEOGRAPHY_TYPE",
-        "SEX_NAME",
-        "PAY_NAME",
-        "MEASURES_NAME",
-        "OBS_VALUE",
-    ]
-]
-df_workplace = df_workplace[df_workplace["GEOGRAPHY_CODE"].str.contains("E")]
-df_workplace_pivot = df_workplace.pivot_table(
-    index=["GEOGRAPHY_CODE"],
-    columns=["SEX_NAME", "PAY_NAME", "MEASURES_NAME"],
-    values="OBS_VALUE",
-).reset_index()
-df_workplace_pivot.columns = df_workplace_pivot.columns.map("|".join).str.strip("|")
+df_workplace = df_workplace[['DATE','GEOGRAPHY_NAME','GEOGRAPHY_CODE','GEOGRAPHY_TYPE','SEX_NAME','PAY_NAME','MEASURES_NAME','OBS_VALUE']]
+df_workplace = df_workplace[df_workplace['GEOGRAPHY_CODE'].str.contains("E")]
+df_workplace_pivot = df_workplace.pivot_table(index=['GEOGRAPHY_CODE'], 
+                    columns=['SEX_NAME','PAY_NAME','MEASURES_NAME'], 
+                    values='OBS_VALUE').reset_index()
+df_workplace_pivot.columns = df_workplace_pivot.columns.map('|'.join).str.strip('|')
 
 # NOMIS - jobs density
-url = "https://www.nomisweb.co.uk/api/v01/dataset/NM_57_1.data.csv?geography=1807745025...1807745028,1807745030...1807745032,1807745034...1807745083,1807745085,1807745282,1807745283,1807745086...1807745155,1807745157...1807745164,1807745166...1807745170,1807745172...1807745177,1807745179...1807745194,1807745196,1807745197,1807745199,1807745201...1807745218,1807745221,1807745222,1807745224,1807745226...1807745231,1807745233,1807745234,1807745236...1807745244,1807745271...1807745281,1811939329...1811939332,1811939334...1811939336,1811939338...1811939428,1811939436...1811939442,1811939768,1811939769,1811939443...1811939497,1811939499...1811939501,1811939503,1811939505...1811939507,1811939509...1811939517,1811939519,1811939520,1811939524...1811939570,1811939575...1811939599,1811939601...1811939628,1811939630...1811939634,1811939636...1811939647,1811939649,1811939655...1811939664,1811939667...1811939680,1811939682,1811939683,1811939685,1811939687...1811939704,1811939707,1811939708,1811939710,1811939712...1811939717,1811939719,1811939720,1811939722...1811939730,1811939757...1811939767&date=latest&item=1,3&measures=20100"
+url = 'https://www.nomisweb.co.uk/api/v01/dataset/NM_57_1.data.csv?geography=1820327937...1820328318&date=latest&item=1,3&measures=20100&signature=NPK-be81606366125733ff591b:0x70612ce5fbfa17433bcee945bf28f28a577360ea'
 
 df_density = pd.read_csv(url)
-df_density = df_density[
-    [
-        "DATE",
-        "GEOGRAPHY_NAME",
-        "GEOGRAPHY_CODE",
-        "GEOGRAPHY_TYPE",
-        "ITEM_NAME",
-        "MEASURES_NAME",
-        "OBS_VALUE",
-    ]
-]
-df_density = df_density[df_density["GEOGRAPHY_CODE"].str.contains("E")]
-df_density_pivot = df_density.pivot_table(
-    index=["GEOGRAPHY_CODE"], columns=["ITEM_NAME", "MEASURES_NAME"], values="OBS_VALUE"
-).reset_index()
-df_density_pivot.columns = df_density_pivot.columns.map("|".join).str.strip("|")
+df_density = df_density[['DATE','GEOGRAPHY_NAME','GEOGRAPHY_CODE','GEOGRAPHY_TYPE','ITEM_NAME','MEASURES_NAME','OBS_VALUE']]
+df_density = df_density[df_density['GEOGRAPHY_CODE'].str.contains("E")]
+df_density_pivot = df_density.pivot_table(index=['GEOGRAPHY_CODE'], 
+                    columns=['ITEM_NAME','MEASURES_NAME'], 
+                    values='OBS_VALUE').reset_index()
+df_density_pivot.columns = df_density_pivot.columns.map('|'.join).str.strip('|')
 
 # NOMIS - Claimant count
-url = "https://www.nomisweb.co.uk/api/v01/dataset/NM_162_1.data.csv?geography=1807745025...1807745028,1807745030...1807745032,1807745034...1807745083,1807745085,1807745282,1807745283,1807745086...1807745155,1807745157...1807745164,1807745166...1807745170,1807745172...1807745177,1807745179...1807745194,1807745196,1807745197,1807745199,1807745201...1807745218,1807745221,1807745222,1807745224,1807745226...1807745231,1807745233,1807745234,1807745236...1807745244,1807745271...1807745281,1811939329...1811939332,1811939334...1811939336,1811939338...1811939428,1811939436...1811939442,1811939768,1811939769,1811939443...1811939497,1811939499...1811939501,1811939503,1811939505...1811939507,1811939509...1811939517,1811939519,1811939520,1811939524...1811939570,1811939575...1811939599,1811939601...1811939628,1811939630...1811939634,1811939636...1811939647,1811939649,1811939655...1811939664,1811939667...1811939680,1811939682,1811939683,1811939685,1811939687...1811939704,1811939707,1811939708,1811939710,1811939712...1811939717,1811939719,1811939720,1811939722...1811939730,1811939757...1811939767&date=latestMINUS27,latestMINUS26,latestMINUS25,latestMINUS24,latestMINUS23,latestMINUS22,latestMINUS21,latestMINUS20,latestMINUS19,latestMINUS18,latestMINUS17,latestMINUS16&gender=0&age=0&measure=1...4&measures=20100"
+url = 'https://www.nomisweb.co.uk/api/v01/dataset/NM_162_1.data.csv?geography=1820327937...1820328318&date=latestMINUS24&gender=0&age=0&measure=1...4&measures=20100&signature=NPK-be81606366125733ff591b:0x99686c2f446d8780bff53420853b01198f62baad'
 
 df_claim = pd.read_csv(url)
-df_claim = df_claim[
-    [
-        "DATE",
-        "GEOGRAPHY_NAME",
-        "GEOGRAPHY_CODE",
-        "GEOGRAPHY_TYPE",
-        "MEASURE_NAME",
-        "OBS_VALUE",
-    ]
-]
-df_claim = df_claim[df_claim["GEOGRAPHY_CODE"].str.contains("E")]
-df_claim_pivot = df_claim.pivot_table(
-    index=["GEOGRAPHY_CODE"], columns=["MEASURE_NAME"], values="OBS_VALUE"
-).reset_index()
+df_claim = df_claim[['DATE','GEOGRAPHY_NAME','GEOGRAPHY_CODE','GEOGRAPHY_TYPE','MEASURE_NAME','OBS_VALUE']]
+df_claim = df_claim[df_claim['GEOGRAPHY_CODE'].str.contains("E")]
+df_claim_pivot = df_claim.pivot_table(index=['GEOGRAPHY_CODE'], 
+                    columns=['MEASURE_NAME'], 
+                    values='OBS_VALUE').reset_index()
 
 # London Min Wage
-url = "https://opendata.arcgis.com/datasets/79c993a10398400bb025a00849a43dc0_0.csv"
+url = 'https://opendata.arcgis.com/datasets/3ba3daf9278f47daba0f561889c3521a_0.csv'
 
 df_london = pd.read_csv(url)
-df_london["london_min_wage"] = np.where(
-    (df_london["CTY19NM"] == "Inner London") | (df_london["CTY19NM"] == "Outer London"),
-    True,
-    False,
-)
+df_london['london_min_wage'] = np.where(df_london['RGN19NM'] == 'London', True, False)
+df_london.drop(list(df_london.filter(['FID','LAD19NM'])), axis = 1, inplace = True)
+
+# ODS Code 2019 index file
+url = 'https://opendata.arcgis.com/datasets/c3ddcd23a15c4d7985d8b36f1344b1db_0.csv'
+
+df_index = pd.read_csv(url)
+df_index = df_index[df_index['LAD19CD'].str.contains("E")]
 
 # Merge to master file
-merged_master = pd.merge(
-    df_population_pivot, df_survey_pivot, on=["GEOGRAPHY_CODE"], how="left"
-)
-merged_master
-merged_master.reset_index().to_csv("data/master_file.csv", index=False)
+merged_master = pd.merge(df_index, df_london, on=['LAD19CD'], how="left")
+merged_master = pd.merge(merged_master, df_survey_pivot, left_on=['LAD19CD'], right_on=['GEOGRAPHY_CODE'], how="left")
+merged_master = pd.merge(merged_master, df_population_pivot, left_on=['LAD19CD'], right_on=['GEOGRAPHY_CODE'], how="left")
+merged_master = pd.merge(merged_master, df_density_pivot, left_on=['LAD19CD'], right_on=['GEOGRAPHY_CODE'], how="left")
+merged_master = pd.merge(merged_master, df_workplace_pivot, left_on=['LAD19CD'], right_on=['GEOGRAPHY_CODE'], how="left")
+merged_master = pd.merge(merged_master, df_claim_pivot, left_on=['LAD19CD'], right_on=['GEOGRAPHY_CODE'], how="left")
+merged_master.drop(list(merged_master.filter(regex = 'GEOGRAPHY_CODE')), axis = 1, inplace = True)
+merged_master.reset_index().to_csv('data/master_file.csv', index=False)
