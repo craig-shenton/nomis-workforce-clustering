@@ -1,135 +1,170 @@
 ,0
-0,FID
-1,LAD19CD
-2,LAD19NM
-3,LAD19NMW
-4,RGN19CD
-5,RGN19NM
-6,london_min_wage
-7,% aged 16-64 who are employees|Confidence
-8,% aged 16-64 who are employees|Denominator
-9,% aged 16-64 who are employees|Numerator
-10,% aged 16-64 who are employees|Variable
-11,% aged 16-64 who are self employed|Confidence
-12,% aged 16-64 who are self employed|Denominator
-13,% aged 16-64 who are self employed|Numerator
-14,% aged 16-64 who are self employed|Variable
-15,% all in employment who are - 61: caring personal service occupations (SOC2010)|Confidence
-16,% all in employment who are - 61: caring personal service occupations (SOC2010)|Denominator
-17,% all in employment who are - 61: caring personal service occupations (SOC2010)|Numerator
-18,% all in employment who are - 61: caring personal service occupations (SOC2010)|Variable
-19,"% all in employment who are - 6: caring, leisure and other service occupations (SOC2010)|Confidence"
-20,"% all in employment who are - 6: caring, leisure and other service occupations (SOC2010)|Denominator"
-21,"% all in employment who are - 6: caring, leisure and other service occupations (SOC2010)|Numerator"
-22,"% all in employment who are - 6: caring, leisure and other service occupations (SOC2010)|Variable"
-23,% in employment who are employees - aged 16-64|Confidence
-24,% in employment who are employees - aged 16-64|Denominator
-25,% in employment who are employees - aged 16-64|Numerator
-26,% in employment who are employees - aged 16-64|Variable
-27,% in employment who are self employed - aged 16-64|Confidence
-28,% in employment who are self employed - aged 16-64|Denominator
-29,% in employment who are self employed - aged 16-64|Numerator
-30,% in employment who are self employed - aged 16-64|Variable
-31,% in employment working full-time - aged 16-64|Confidence
-32,% in employment working full-time - aged 16-64|Denominator
-33,% in employment working full-time - aged 16-64|Numerator
-34,% in employment working full-time - aged 16-64|Variable
-35,% in employment working part-time - aged 16-64|Confidence
-36,% in employment working part-time - aged 16-64|Denominator
-37,% in employment working part-time - aged 16-64|Numerator
-38,% in employment working part-time - aged 16-64|Variable
-39,% of all in employment who work 10-34 hours|Confidence
-40,% of all in employment who work 10-34 hours|Denominator
-41,% of all in employment who work 10-34 hours|Numerator
-42,% of all in employment who work 10-34 hours|Variable
-43,% of all in employment who work 35-44 hours|Confidence
-44,% of all in employment who work 35-44 hours|Denominator
-45,% of all in employment who work 35-44 hours|Numerator
-46,% of all in employment who work 35-44 hours|Variable
-47,% of all in employment who work 45 hours or more|Confidence
-48,% of all in employment who work 45 hours or more|Denominator
-49,% of all in employment who work 45 hours or more|Numerator
-50,% of all in employment who work 45 hours or more|Variable
-51,% of all in employment who work under 10 hours|Confidence
-52,% of all in employment who work under 10 hours|Denominator
-53,% of all in employment who work under 10 hours|Numerator
-54,% of all in employment who work under 10 hours|Variable
-55,% of economically inactive who do not want a job|Confidence
-56,% of economically inactive who do not want a job|Denominator
-57,% of economically inactive who do not want a job|Numerator
-58,% of economically inactive who do not want a job|Variable
-59,% of economically inactive who want a job|Confidence
-60,% of economically inactive who want a job|Denominator
-61,% of economically inactive who want a job|Numerator
-62,% of economically inactive who want a job|Variable
-63,% of ethnic minority - aged 16-64|Confidence
-64,% of ethnic minority - aged 16-64|Denominator
-65,% of ethnic minority - aged 16-64|Numerator
-66,% of ethnic minority - aged 16-64|Variable
-67,% of white - aged 16-64|Confidence
-68,% of white - aged 16-64|Denominator
-69,% of white - aged 16-64|Numerator
-70,% of white - aged 16-64|Variable
-71,% who are economically inactive - aged 16-64|Confidence
-72,% who are economically inactive - aged 16-64|Denominator
-73,% who are economically inactive - aged 16-64|Numerator
-74,% who are economically inactive - aged 16-64|Variable
-75,% with NVQ1+ - aged 16-64|Confidence
-76,% with NVQ1+ - aged 16-64|Denominator
-77,% with NVQ1+ - aged 16-64|Numerator
-78,% with NVQ1+ - aged 16-64|Variable
-79,% with NVQ2+ - aged 16-64|Confidence
-80,% with NVQ2+ - aged 16-64|Denominator
-81,% with NVQ2+ - aged 16-64|Numerator
-82,% with NVQ2+ - aged 16-64|Variable
-83,% with NVQ3+ - aged 16-64|Confidence
-84,% with NVQ3+ - aged 16-64|Denominator
-85,% with NVQ3+ - aged 16-64|Numerator
-86,% with NVQ3+ - aged 16-64|Variable
-87,% with NVQ4+ - aged 16-64|Confidence
-88,% with NVQ4+ - aged 16-64|Denominator
-89,% with NVQ4+ - aged 16-64|Numerator
-90,% with NVQ4+ - aged 16-64|Variable
-91,% with no qualifications (NVQ) - aged 16-64|Confidence
-92,% with no qualifications (NVQ) - aged 16-64|Denominator
-93,% with no qualifications (NVQ) - aged 16-64|Numerator
-94,% with no qualifications (NVQ) - aged 16-64|Variable
-95,% with other qualifications (NVQ) - aged 16-64|Confidence
-96,% with other qualifications (NVQ) - aged 16-64|Denominator
-97,% with other qualifications (NVQ) - aged 16-64|Numerator
-98,% with other qualifications (NVQ) - aged 16-64|Variable
-99,Economic activity rate - aged 16-64|Confidence
-100,Economic activity rate - aged 16-64|Denominator
-101,Economic activity rate - aged 16-64|Numerator
-102,Economic activity rate - aged 16-64|Variable
-103,Employment rate - aged 16-64|Confidence
-104,Employment rate - aged 16-64|Denominator
-105,Employment rate - aged 16-64|Numerator
-106,Employment rate - aged 16-64|Variable
-107,Unemployment rate - aged 16-64 |Confidence
-108,Unemployment rate - aged 16-64 |Denominator
-109,Unemployment rate - aged 16-64 |Numerator
-110,Unemployment rate - aged 16-64 |Variable
-111,Aged 16 - 64|Percent
-112,Aged 16 - 64|Value
-113,Aged 65 and over|Percent
-114,Aged 65 and over|Value
-115,All ages|Percent
-116,All ages|Value
-117,Jobs density|Value
-118,Total jobs|Value
-119,Full Time Workers|Annual pay - gross|Confidence
-120,Full Time Workers|Annual pay - gross|Value
-121,Full Time Workers|Weekly pay - gross|Confidence
-122,Full Time Workers|Weekly pay - gross|Value
-123,Part Time Workers|Annual pay - gross|Confidence
-124,Part Time Workers|Annual pay - gross|Value
-125,Part Time Workers|Weekly pay - gross|Confidence
-126,Part Time Workers|Weekly pay - gross|Value
-127,Total|Annual pay - gross|Confidence
-128,Total|Annual pay - gross|Value
-129,Total|Weekly pay - gross|Confidence
-130,Total|Weekly pay - gross|Value
-131,Claimant count
-132,Claimants as a proportion of economically active residents aged 16+
-133,Claimants as a proportion of residents aged 16-64
+0,GEOGRAPHY_CODE
+1,Aged 0 - 15|Percent
+2,Aged 0 - 15|Value
+3,Aged 16 - 64|Percent
+4,Aged 16 - 64|Value
+5,Aged 65 and over|Percent
+6,Aged 65 and over|Value
+7,All ages|Percent
+8,All ages|Value
+9,% aged 16-64 who are employees|Confidence
+10,% aged 16-64 who are employees|Denominator
+11,% aged 16-64 who are employees|Numerator
+12,% aged 16-64 who are employees|Variable
+13,% aged 16-64 who are self employed|Confidence
+14,% aged 16-64 who are self employed|Denominator
+15,% aged 16-64 who are self employed|Numerator
+16,% aged 16-64 who are self employed|Variable
+17,% all in employment who are - 61: caring personal service occupations (SOC2010)|Confidence
+18,% all in employment who are - 61: caring personal service occupations (SOC2010)|Denominator
+19,% all in employment who are - 61: caring personal service occupations (SOC2010)|Numerator
+20,% all in employment who are - 61: caring personal service occupations (SOC2010)|Variable
+21,"% all in employment who are - 6: caring, leisure and other service occupations (SOC2010)|Confidence"
+22,"% all in employment who are - 6: caring, leisure and other service occupations (SOC2010)|Denominator"
+23,"% all in employment who are - 6: caring, leisure and other service occupations (SOC2010)|Numerator"
+24,"% all in employment who are - 6: caring, leisure and other service occupations (SOC2010)|Variable"
+25,% all who received job rel. train in last 4 wks -employees & self emp. aged 16-64|Confidence
+26,% all who received job rel. train in last 4 wks -employees & self emp. aged 16-64|Denominator
+27,% all who received job rel. train in last 4 wks -employees & self emp. aged 16-64|Numerator
+28,% all who received job rel. train in last 4 wks -employees & self emp. aged 16-64|Variable
+29,% all who received job rel. train. in last 4 wks - NVQ Level 3 equivalent and below|Confidence
+30,% all who received job rel. train. in last 4 wks - NVQ Level 3 equivalent and below|Denominator
+31,% all who received job rel. train. in last 4 wks - NVQ Level 3 equivalent and below|Numerator
+32,% all who received job rel. train. in last 4 wks - NVQ Level 3 equivalent and below|Variable
+33,% all who received job rel. train. in last 4 wks - NVQ Level 4 equivalent and above|Confidence
+34,% all who received job rel. train. in last 4 wks - NVQ Level 4 equivalent and above|Denominator
+35,% all who received job rel. train. in last 4 wks - NVQ Level 4 equivalent and above|Numerator
+36,% all who received job rel. train. in last 4 wks - NVQ Level 4 equivalent and above|Variable
+37,% all who received job rel. train. in last 4 wks - working part-time|Confidence
+38,% all who received job rel. train. in last 4 wks - working part-time|Denominator
+39,% all who received job rel. train. in last 4 wks - working part-time|Numerator
+40,% all who received job rel. train. in last 4 wks - working part-time|Variable
+41,% all who received job related training in last  4 wks - in service industries (SIC 2007)|Confidence
+42,% all who received job related training in last  4 wks - in service industries (SIC 2007)|Denominator
+43,% all who received job related training in last  4 wks - in service industries (SIC 2007)|Numerator
+44,% all who received job related training in last  4 wks - in service industries (SIC 2007)|Variable
+45,% in employment who are employees - aged 16-64|Confidence
+46,% in employment who are employees - aged 16-64|Denominator
+47,% in employment who are employees - aged 16-64|Numerator
+48,% in employment who are employees - aged 16-64|Variable
+49,% in employment who are self employed - aged 16-64|Confidence
+50,% in employment who are self employed - aged 16-64|Denominator
+51,% in employment who are self employed - aged 16-64|Numerator
+52,% in employment who are self employed - aged 16-64|Variable
+53,% in employment working full-time - aged 16-64|Confidence
+54,% in employment working full-time - aged 16-64|Denominator
+55,% in employment working full-time - aged 16-64|Numerator
+56,% in employment working full-time - aged 16-64|Variable
+57,% in employment working part-time - aged 16-64|Confidence
+58,% in employment working part-time - aged 16-64|Denominator
+59,% in employment working part-time - aged 16-64|Numerator
+60,% in employment working part-time - aged 16-64|Variable
+61,% of all in employment who work 10-34 hours|Confidence
+62,% of all in employment who work 10-34 hours|Denominator
+63,% of all in employment who work 10-34 hours|Numerator
+64,% of all in employment who work 10-34 hours|Variable
+65,% of all in employment who work 35-44 hours|Confidence
+66,% of all in employment who work 35-44 hours|Denominator
+67,% of all in employment who work 35-44 hours|Numerator
+68,% of all in employment who work 35-44 hours|Variable
+69,% of all in employment who work 45 hours or more|Confidence
+70,% of all in employment who work 45 hours or more|Denominator
+71,% of all in employment who work 45 hours or more|Numerator
+72,% of all in employment who work 45 hours or more|Variable
+73,% of all in employment who work under 10 hours|Confidence
+74,% of all in employment who work under 10 hours|Denominator
+75,% of all in employment who work under 10 hours|Numerator
+76,% of all in employment who work under 10 hours|Variable
+77,% of all who received job rel. train. in last 4 wks - working full-time|Confidence
+78,% of all who received job rel. train. in last 4 wks - working full-time|Denominator
+79,% of all who received job rel. train. in last 4 wks - working full-time|Numerator
+80,% of all who received job rel. train. in last 4 wks - working full-time|Variable
+81,% of all who received job related training in last  4 wks - aged 16-64|Confidence
+82,% of all who received job related training in last  4 wks - aged 16-64|Denominator
+83,% of all who received job related training in last  4 wks - aged 16-64|Numerator
+84,% of all who received job related training in last  4 wks - aged 16-64|Variable
+85,% of economically inactive who do not want a job|Confidence
+86,% of economically inactive who do not want a job|Denominator
+87,% of economically inactive who do not want a job|Numerator
+88,% of economically inactive who do not want a job|Variable
+89,% of economically inactive who want a job|Confidence
+90,% of economically inactive who want a job|Denominator
+91,% of economically inactive who want a job|Numerator
+92,% of economically inactive who want a job|Variable
+93,% who are economically inactive - aged 16-64|Confidence
+94,% who are economically inactive - aged 16-64|Denominator
+95,% who are economically inactive - aged 16-64|Numerator
+96,% who are economically inactive - aged 16-64|Variable
+97,% with NVQ1+ - aged 16-64|Confidence
+98,% with NVQ1+ - aged 16-64|Denominator
+99,% with NVQ1+ - aged 16-64|Numerator
+100,% with NVQ1+ - aged 16-64|Variable
+101,% with NVQ2+ - aged 16-64|Confidence
+102,% with NVQ2+ - aged 16-64|Denominator
+103,% with NVQ2+ - aged 16-64|Numerator
+104,% with NVQ2+ - aged 16-64|Variable
+105,% with NVQ3+ - aged 16-64|Confidence
+106,% with NVQ3+ - aged 16-64|Denominator
+107,% with NVQ3+ - aged 16-64|Numerator
+108,% with NVQ3+ - aged 16-64|Variable
+109,% with NVQ4+ - aged 16-64|Confidence
+110,% with NVQ4+ - aged 16-64|Denominator
+111,% with NVQ4+ - aged 16-64|Numerator
+112,% with NVQ4+ - aged 16-64|Variable
+113,% with no qualifications (NVQ) - aged 16-64|Confidence
+114,% with no qualifications (NVQ) - aged 16-64|Denominator
+115,% with no qualifications (NVQ) - aged 16-64|Numerator
+116,% with no qualifications (NVQ) - aged 16-64|Variable
+117,Economic activity rate - aged 16-64|Confidence
+118,Economic activity rate - aged 16-64|Denominator
+119,Economic activity rate - aged 16-64|Numerator
+120,Economic activity rate - aged 16-64|Variable
+121,Employment rate - aged 16-64|Confidence
+122,Employment rate - aged 16-64|Denominator
+123,Employment rate - aged 16-64|Numerator
+124,Employment rate - aged 16-64|Variable
+125,Percentage of  population aged 16-64 who are ethnic minority UK national|Confidence
+126,Percentage of  population aged 16-64 who are ethnic minority UK national|Denominator
+127,Percentage of  population aged 16-64 who are ethnic minority UK national|Numerator
+128,Percentage of  population aged 16-64 who are ethnic minority UK national|Variable
+129,Percentage of  population aged 16-64 who are ethnic minority not UK national|Confidence
+130,Percentage of  population aged 16-64 who are ethnic minority not UK national|Denominator
+131,Percentage of  population aged 16-64 who are ethnic minority not UK national|Numerator
+132,Percentage of  population aged 16-64 who are ethnic minority not UK national|Variable
+133,Percentage of  population aged 16-64 who are white UK national|Confidence
+134,Percentage of  population aged 16-64 who are white UK national|Denominator
+135,Percentage of  population aged 16-64 who are white UK national|Numerator
+136,Percentage of  population aged 16-64 who are white UK national|Variable
+137,Percentage of  population aged 16-64 who are white not UK national|Confidence
+138,Percentage of  population aged 16-64 who are white not UK national|Denominator
+139,Percentage of  population aged 16-64 who are white not UK national|Numerator
+140,Percentage of  population aged 16-64 who are white not UK national|Variable
+141,Unemployment rate - aged 16-64 |Confidence
+142,Unemployment rate - aged 16-64 |Denominator
+143,Unemployment rate - aged 16-64 |Numerator
+144,Unemployment rate - aged 16-64 |Variable
+145,all persons employed in private sector as % of all persons in employment|Confidence
+146,all persons employed in private sector as % of all persons in employment|Denominator
+147,all persons employed in private sector as % of all persons in employment|Numerator
+148,all persons employed in private sector as % of all persons in employment|Variable
+149,all persons employed in public sector as % of all persons in employment|Confidence
+150,all persons employed in public sector as % of all persons in employment|Denominator
+151,all persons employed in public sector as % of all persons in employment|Numerator
+152,all persons employed in public sector as % of all persons in employment|Variable
+153,Jobs density|Value
+154,Total jobs|Value
+155,Full Time Workers|Annual pay - gross|Confidence
+156,Full Time Workers|Annual pay - gross|Value
+157,Full Time Workers|Weekly pay - gross|Confidence
+158,Full Time Workers|Weekly pay - gross|Value
+159,Part Time Workers|Annual pay - gross|Confidence
+160,Part Time Workers|Annual pay - gross|Value
+161,Part Time Workers|Weekly pay - gross|Confidence
+162,Part Time Workers|Weekly pay - gross|Value
+163,Claimant count
+164,Claimants as a proportion of economically active residents aged 16+
+165,Claimants as a proportion of residents aged 16-64
+166,RGN19CD
+167,RGN19NM
+168,london_min_wage
